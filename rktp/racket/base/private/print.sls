@@ -42,6 +42,7 @@
                      (newline out)
                      (loop (+ i 1) vals)]
                     [(#\~)
+                     (write-char #\~ out)
                      (loop (+ i 1) vals)]
                     [else
                      (display ch out)
