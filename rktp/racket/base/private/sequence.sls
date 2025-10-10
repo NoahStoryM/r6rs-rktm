@@ -20,12 +20,13 @@
           )
   (import (rnrs)
           (rnrs mutable-pairs)
-          (rktp racket base private aliases))
+          (rktp racket base private aliases)
+          (rktp racket base private error)
+          (rktp racket base private math))
 
   (define (->true . _) #t)
   (define (list->values v*) (apply values v*))
   (define (list*? l) (or (null? l) (pair? l)))
-  (define (natural? v) (and (integer? v) (exact? v) (>= v 0)))
   (define raise-sequence-empty-error
     (let ([next (λ () (error #f "sequence has no more values"))])
       next))
@@ -47,8 +48,7 @@
   (define (sequence->do-sequence seq)
     (let loop ([table table])
       (when (null? table)
-        (assertion-violation 'sequence->do-sequence
-                             "value is not a sequence" seq))
+        (raise-argument-error 'sequence->do-sequence "sequence?" seq))
       (let ([p (car table)])
         (or (and ((car p) seq)
                  ((cdr p) seq))

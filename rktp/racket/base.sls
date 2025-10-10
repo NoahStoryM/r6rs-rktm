@@ -15,24 +15,29 @@
    ;; immutable-box immutable-box?
 
    ;; control
-   ;; let/cc
-   ;; current-continuation cc
+   let/cc
+   current-continuation cc
 
    ;; define
    define-syntax-rule
 
-   ;; TODO error
-   ;; raise-user-error
-   ;; raise-argument-error
-   ;; raise-result-error
-   ;; raise-arguments-error
-   ;; raise-range-error
-   ;; raise-type-error
-   ;; raise-mismatch-error
-   ;; raise-arity-error
-   ;; raise-arity-mask-error
-   ;; raise-result-arity-error
-   ;; raise-syntax-error
+   ;; error
+   unquoted-printing-string?
+   unquoted-printing-string
+   make-unquoted-printing-string
+   unquoted-printing-string-value
+   raise-user-error
+   raise-argument-error
+   raise-result-error
+   raise-arguments-error
+   raise-range-error
+
+   ;; exception
+   &exn make-exn exn?
+   exn-message
+   &exn:fail make-exn:fail exn:fail?
+   &exn:fail:contract make-exn:fail:contract exn:fail:contract?
+   &exn:fail:user make-exn:fail:user exn:fail:user?
 
    ;; TODO for
    ;; for/fold
@@ -60,6 +65,11 @@
 
    ;; TODO function
    ;; compose ∘
+
+   ;; math
+   exact-integer?
+   exact-nonnegative-integer?
+   natural?
 
    ;; print
    displayln
@@ -99,9 +109,11 @@
    void?)
   (import (rktp racket base private aliases)
           (rktp racket base private begin)
-          ;; (rktp racket base private control)
+          (rktp racket base private control)
           (rktp racket base private define)
-          ;; (rktp racket base private error)
+          (rktp racket base private error)
+          (rktp racket base private exception)
+          (rktp racket base private math)
           (rktp racket base private print)
           (rktp racket base private sequence)
           (rktp racket base private format)

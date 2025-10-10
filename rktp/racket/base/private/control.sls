@@ -14,4 +14,4 @@
   (define current-continuation
     (case-λ
       [() (call/cc current-continuation)]
-      [(k) (raise-result-error 'current-contination "none?" (k k))])))
+      [(k) (raise-result-error 'current-contination "none/c" (k k))])))
