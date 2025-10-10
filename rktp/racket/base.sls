@@ -14,6 +14,13 @@
    ;; box mutable-box? box-set!
    ;; immutable-box immutable-box?
 
+   ;; contract
+   and/c
+   or/c
+   not/c
+   any/c
+   none/c
+
    ;; control
    let/cc
    current-continuation cc
@@ -66,6 +73,10 @@
    ;; TODO function
    ;; compose ∘
 
+   ;; list
+   andmap
+   ormap
+
    ;; math
    exact-integer?
    exact-nonnegative-integer?
@@ -109,10 +120,12 @@
    void?)
   (import (rktp racket base private aliases)
           (rktp racket base private begin)
+          (rktp racket base private contract)
           (rktp racket base private control)
           (rktp racket base private define)
           (rktp racket base private error)
           (rktp racket base private exception)
+          (rktp racket base private list)
           (rktp racket base private math)
           (rktp racket base private print)
           (rktp racket base private sequence)
