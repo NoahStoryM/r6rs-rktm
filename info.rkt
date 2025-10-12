@@ -12,4 +12,4 @@
 (define scribblings '(("scribblings/rktm.scrbl")))
 
 (define clean '("compiled" "private/compiled"))
-(define test-omit-paths '(#px"^((?!/tests/).)*$" "test.ss"))
+(define test-omit-paths '("test.ss"))
