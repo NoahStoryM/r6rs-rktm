@@ -7,7 +7,10 @@
           fprintf
           printf
           eprintf)
-  (import (rnrs)
+  (import (rnrs base)
+          (rnrs control)
+          (rnrs io ports)
+          (rnrs io simple)
           (rktm racket base private aliases))
 
   (define displayln

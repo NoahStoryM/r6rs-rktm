@@ -2,7 +2,7 @@
 
 (library (rktm racket base private define)
   (export define-syntax-rule)
-  (import (rnrs))
+  (import (rnrs base))
 
   (define-syntax define-syntax-rule
     (syntax-rules ()

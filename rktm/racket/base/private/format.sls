@@ -4,7 +4,8 @@
   (export format-
           format
           ~a ~s)
-  (import (rnrs)
+  (import (rnrs base)
+          (rnrs io ports)
           (rktm racket base private aliases)
           (rktm racket base private print))
 

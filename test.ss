@@ -1,6 +1,7 @@
 #!r6rs
 
-(import (rnrs)
+(import (rnrs base)
+        (rnrs io simple)
         (rktm racket base))
 
 (define-syntax test

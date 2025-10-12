@@ -4,4 +4,5 @@
   (export (rename [lambda λ] [case-lambda case-λ]
                   [not false?]
                   [values identity]))
-  (import (rnrs)))
+  (import (rnrs base)
+          (rnrs control)))

@@ -1,6 +1,6 @@
 #!r6rs
 
-(library (rktm racket base private list)
+(library (rktm racket base private lists)
   (export andmap
           ormap)
   (import (rnrs)

@@ -11,7 +11,7 @@
    ;; box mutable-box? box-set!
    ;; immutable-box immutable-box?
 
-   ;; contract
+   ;; contracts
    and/c
    or/c
    not/c
@@ -36,7 +36,7 @@
    raise-arguments-error
    raise-range-error
 
-   ;; exception
+   ;; exceptions
    &exn make-exn exn?
    exn-message
    &exn:fail make-exn:fail exn:fail?
@@ -70,7 +70,7 @@
    ;; TODO function
    ;; compose ∘
 
-   ;; list
+   ;; lists
    andmap
    ormap
 
@@ -91,7 +91,7 @@
    ;; make-parameter
    ;; parameterize
 
-   ;; TODO sequence
+   ;; TODO sequences
    make-do-sequence
    define-sequence
    sequence?
@@ -116,14 +116,14 @@
    void
    void?)
   (import (rktm racket base private aliases)
-          (rktm racket base private contract)
+          (rktm racket base private contracts)
           (rktm racket base private control)
           (rktm racket base private define)
           (rktm racket base private error)
-          (rktm racket base private exception)
-          (rktm racket base private list)
+          (rktm racket base private exceptions)
+          (rktm racket base private lists)
           (rktm racket base private math)
           (rktm racket base private print)
-          (rktm racket base private sequence)
+          (rktm racket base private sequences)
           (rktm racket base private format)
           (rktm racket base private void)))

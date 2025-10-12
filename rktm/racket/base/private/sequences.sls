@@ -1,6 +1,6 @@
 #!r6rs
 
-(library (rktm racket base private sequence)
+(library (rktm racket base private sequences)
   (export make-do-sequence
           define-sequence
           sequence?
@@ -18,10 +18,13 @@
           ;; in-hash
           ;; in-port
           )
-  (import (rnrs)
+  (import (rnrs base)
+          (rnrs bytevectors)
+          (rnrs control)
           (rnrs mutable-pairs)
+          (rnrs records syntactic)
           (rktm racket base private aliases)
-          (rktm racket base private contract)
+          (rktm racket base private contracts)
           (rktm racket base private error)
           (rktm racket base private math))
 

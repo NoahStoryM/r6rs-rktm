@@ -1,12 +1,12 @@
 #!r6rs
 
-(library (rktm racket base private exception)
+(library (rktm racket base private exceptions)
   (export &exn make-exn exn?
           exn-message
           &exn:fail make-exn:fail exn:fail?
           &exn:fail:contract make-exn:fail:contract exn:fail:contract?
           &exn:fail:user make-exn:fail:user exn:fail:user?)
-  (import (rnrs)
+  (import (rnrs conditions)
           (rktm racket base private aliases))
 
   (define-condition-type &exn &error

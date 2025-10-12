@@ -62,6 +62,6 @@
    ;; test-exn
    ;; test-not-exn
    )
-  (import (rnrs))
+  (import (rnrs base))
 
   )

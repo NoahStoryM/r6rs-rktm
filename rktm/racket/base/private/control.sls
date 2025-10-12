@@ -4,7 +4,7 @@
   (export let/cc
           current-continuation
           (rename [current-continuation cc]))
-  (import (rnrs)
+  (import (rnrs base)
           (rktm racket base private aliases)
           (rktm racket base private define)
           (rktm racket base private error))
