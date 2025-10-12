@@ -20,18 +20,22 @@
           )
   (import (rnrs base)
           (rnrs bytevectors)
+          (rnrs conditions)
           (rnrs control)
+          (rnrs exceptions)
           (rnrs mutable-pairs)
           (rnrs records syntactic)
           (rktm racket base private lambda)
           (rktm racket base private contracts)
           (rktm racket base private error)
+          (rktm racket base private exceptions)
           (rktm racket base private math))
 
   (define (list->values v*) (apply values v*))
   (define (list*? l) (or (null? l) (pair? l)))
   (define raise-sequence-empty-error
-    (let ([next (λ () (error #f "sequence has no more values"))])
+    (let* ([msg "sequence has no more values"]
+           [next (λ () (raise (condition (make-exn:fail:contract msg) msg)))])
       next))
 
   (define-record-type do-sequence (fields thunk))
