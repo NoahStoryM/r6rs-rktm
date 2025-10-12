@@ -21,10 +21,10 @@
   (import (rnrs)
           (rnrs mutable-pairs)
           (rktp racket base private aliases)
+          (rktp racket base private contract)
           (rktp racket base private error)
           (rktp racket base private math))
 
-  (define (->true . _) #t)
   (define (list->values v*) (apply values v*))
   (define (list*? l) (or (null? l) (pair? l)))
   (define raise-sequence-empty-error
@@ -80,9 +80,9 @@
                    continue-after-pos+val?)
                   ((do-sequence-thunk do-seq))])
       (let ([early-next-pos (or early-next-pos values)]
-            [continue-with-pos? (or continue-with-pos? ->true)]
-            [continue-with-val? (or continue-with-val? ->true)]
-            [continue-after-pos+val? (or continue-after-pos+val? ->true)])
+            [continue-with-pos? (or continue-with-pos? any)]
+            [continue-with-val? (or continue-with-val? any)]
+            [continue-after-pos+val? (or continue-after-pos+val? any)])
         (let loop ([pos init-pos])
           (if (continue-with-pos? pos)
               (let-values ([val* (pos->element pos)])
