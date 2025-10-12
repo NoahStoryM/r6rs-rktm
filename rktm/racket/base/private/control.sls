@@ -1,13 +1,13 @@
 #!r6rs
 
-(library (rktp racket base private control)
+(library (rktm racket base private control)
   (export let/cc
           current-continuation
           (rename [current-continuation cc]))
   (import (rnrs)
-          (rktp racket base private aliases)
-          (rktp racket base private define)
-          (rktp racket base private error))
+          (rktm racket base private aliases)
+          (rktm racket base private define)
+          (rktm racket base private error))
 
   (define-syntax-rule (let/cc k b ...)
     (call/cc (λ (k) b ...)))

@@ -1,12 +1,12 @@
 #!r6rs
 
-(library (rktp racket base private format)
+(library (rktm racket base private format)
   (export format-
           format
           ~a ~s)
   (import (rnrs)
-          (rktp racket base private aliases)
-          (rktp racket base private print))
+          (rktm racket base private aliases)
+          (rktm racket base private print))
 
   (define (format- form v*)
     (let-values ([(o get) (open-string-output-port)])

@@ -1,6 +1,6 @@
 #!r6rs
 
-(library (rktp racket undefined)
+(library (rktm racket undefined)
   (export undefined? (rename [undefined* undefined]))
   (import (rnrs))
 

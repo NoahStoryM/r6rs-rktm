@@ -1,13 +1,10 @@
 #!r6rs
 
-(library (rktp racket base)
+(library (rktm racket base)
   (export
    ;; aliases
    λ case-λ
    false?
-
-   ;; begin
-   begin0
 
    ;; TODO box
    ;; box? unbox
@@ -118,16 +115,15 @@
    ;; void
    void
    void?)
-  (import (rktp racket base private aliases)
-          (rktp racket base private begin)
-          (rktp racket base private contract)
-          (rktp racket base private control)
-          (rktp racket base private define)
-          (rktp racket base private error)
-          (rktp racket base private exception)
-          (rktp racket base private list)
-          (rktp racket base private math)
-          (rktp racket base private print)
-          (rktp racket base private sequence)
-          (rktp racket base private format)
-          (rktp racket base private void)))
+  (import (rktm racket base private aliases)
+          (rktm racket base private contract)
+          (rktm racket base private control)
+          (rktm racket base private define)
+          (rktm racket base private error)
+          (rktm racket base private exception)
+          (rktm racket base private list)
+          (rktm racket base private math)
+          (rktm racket base private print)
+          (rktm racket base private sequence)
+          (rktm racket base private format)
+          (rktm racket base private void)))

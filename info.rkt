@@ -9,7 +9,7 @@
 (define deps '("base" "r6rs-lib"))
 (define build-deps '("r6rs-doc"))
 #;
-(define scribblings '(("scribblings/rktp.scrbl")))
+(define scribblings '(("scribblings/rktm.scrbl")))
 
 (define clean '("compiled" "private/compiled"))
 (define test-omit-paths '(#px"^((?!/tests/).)*$" "test.ss"))

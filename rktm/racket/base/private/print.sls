@@ -1,6 +1,6 @@
 #!r6rs
 
-(library (rktp racket base private print)
+(library (rktm racket base private print)
   (export displayln
           writeln
           fprintf-
@@ -8,7 +8,7 @@
           printf
           eprintf)
   (import (rnrs)
-          (rktp racket base private aliases))
+          (rktm racket base private aliases))
 
   (define displayln
     (case-λ

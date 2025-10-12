@@ -1,6 +1,6 @@
 #!r6rs
 
-(library (rktp racket base private void)
+(library (rktm racket base private void)
   (export void void?)
   (import (rnrs))
   (define (void . _) (if #f #f))
