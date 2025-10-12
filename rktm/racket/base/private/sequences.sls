@@ -23,7 +23,7 @@
           (rnrs control)
           (rnrs mutable-pairs)
           (rnrs records syntactic)
-          (rktm racket base private aliases)
+          (rktm racket base private lambda)
           (rktm racket base private contracts)
           (rktm racket base private error)
           (rktm racket base private math))

@@ -11,7 +11,7 @@
           (rnrs control)
           (rnrs io ports)
           (rnrs io simple)
-          (rktm racket base private aliases))
+          (rktm racket base private lambda))
 
   (define displayln
     (case-λ

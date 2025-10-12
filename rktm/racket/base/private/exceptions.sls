@@ -12,7 +12,7 @@
   (import (rnrs base)
           (rnrs conditions)
           (rnrs exceptions)
-          (rktm racket base private aliases)
+          (rktm racket base private lambda)
           (rktm racket base private define))
 
   (define-syntax with-handlers

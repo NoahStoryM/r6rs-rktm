@@ -6,7 +6,7 @@
           ~a ~s)
   (import (rnrs base)
           (rnrs io ports)
-          (rktm racket base private aliases)
+          (rktm racket base private lambda)
           (rktm racket base private print))
 
   (define (format- form v*)

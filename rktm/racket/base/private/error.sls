@@ -16,7 +16,7 @@
           (rnrs exceptions)
           (rnrs lists)
           (rnrs records syntactic)
-          (rktm racket base private aliases)
+          (rktm racket base private lambda)
           (rktm racket base private exceptions)
           (rktm racket base private format)
           (rktm racket base private math))

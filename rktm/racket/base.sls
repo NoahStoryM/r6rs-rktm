@@ -2,16 +2,13 @@
 
 (library (rktm racket base)
   (export
-   ;; aliases
-   λ case-λ
-   false?
-
    ;; TODO box
    ;; box? unbox
    ;; box mutable-box? box-set!
    ;; immutable-box immutable-box?
 
    ;; contracts
+   false?
    and/c
    or/c
    not/c
@@ -73,6 +70,10 @@
    ;; TODO function
    ;; compose ∘
 
+   ;; lambda
+   λ
+   case-λ
+
    ;; lists
    andmap
    ormap
@@ -118,12 +119,12 @@
    ;; void
    void
    void?)
-  (import (rktm racket base private aliases)
-          (rktm racket base private contracts)
+  (import (rktm racket base private contracts)
           (rktm racket base private control)
           (rktm racket base private define)
           (rktm racket base private error)
           (rktm racket base private exceptions)
+          (rktm racket base private lambda)
           (rktm racket base private lists)
           (rktm racket base private math)
           (rktm racket base private print)
