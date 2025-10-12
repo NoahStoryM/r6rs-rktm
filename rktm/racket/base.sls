@@ -37,6 +37,9 @@
    raise-range-error
 
    ;; exceptions
+   call-with-exception-handler
+   with-handlers
+   with-handlers*
    &exn make-exn exn?
    exn-message
    &exn:fail make-exn:fail exn:fail?

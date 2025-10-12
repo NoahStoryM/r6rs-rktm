@@ -1,13 +1,32 @@
 #!r6rs
 
 (library (rktm racket base private exceptions)
-  (export &exn make-exn exn?
+  (export (rename [with-exception-handler call-with-exception-handler])
+          with-handlers
+          with-handlers*
+          &exn make-exn exn?
           exn-message
           &exn:fail make-exn:fail exn:fail?
           &exn:fail:contract make-exn:fail:contract exn:fail:contract?
           &exn:fail:user make-exn:fail:user exn:fail:user?)
-  (import (rnrs conditions)
-          (rktm racket base private aliases))
+  (import (rnrs base)
+          (rnrs conditions)
+          (rnrs exceptions)
+          (rktm racket base private aliases)
+          (rktm racket base private define))
+
+  (define-syntax with-handlers
+    (syntax-rules ()
+      [(_ () body1 body2 ...)
+       (let () body1 body2 ...)]
+      [(_ ([pred handler] ...) body1 body2 ...)
+       (guard (ex [(pred ex) (handler ex)] ...) body1 body2 ...)]))
+  (define-syntax with-handlers*
+    (syntax-rules ()
+      [(_ () body1 body2 ...)
+       (let () body1 body2 ...)]
+      [(_ ([pred1 handler1] [pred2 handler2] ...) body1 body2 ...)
+       (with-handlers ([pred1 handler1]) (with-handlers* ([pred2 handlers] ...) body1 body2 ...))]))
 
   (define-condition-type &exn &error
     make-exn exn?
