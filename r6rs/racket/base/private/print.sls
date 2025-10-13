@@ -36,22 +36,12 @@
                   (case directive
                     [(#\a #\A)
                      (when (null? vals)
-                       (let ([msg "too few arguments"])
-                         (raise
-                          (condition
-                           (make-exn:fail:contract msg)
-                           (make-who-condition 'fprintf)
-                           (make-message-condition msg)))))
+                       (raise-exn make-exn:fail:contract 'fprintf "too few arguments"))
                      (display (car vals) out)
                      (loop (+ i 1) (cdr vals))]
                     [(#\s #\S)
                      (when (null? vals)
-                       (let ([msg "too few arguments"])
-                         (raise
-                          (condition
-                           (make-exn:fail:contract msg)
-                           (make-who-condition 'fprintf)
-                           (make-message-condition msg)))))
+                       (raise-exn make-exn:fail:contract 'fprintf "too few arguments"))
                      (write (car vals) out)
                      (loop (+ i 1) (cdr vals))]
                     [(#\n #\%)
@@ -67,12 +57,7 @@
                   (display ch out)
                   (loop i vals))))
           (unless (null? vals)
-            (let ([msg "too many arguments"])
-              (raise
-               (condition
-                (make-exn:fail:contract msg)
-                (make-who-condition 'fprintf)
-                (make-message-condition msg))))))))
+            (raise-exn make-exn:fail:contract 'fprintf "too many arguments")))))
   (define (fprintf out form . v*) (fprintf- out form v*))
   (define (printf  form . v*) (fprintf- (current-output-port) form v*))
   (define (eprintf form . v*) (fprintf- (current-error-port)  form v*)))

@@ -34,12 +34,7 @@
   (define (list->values v*) (apply values v*))
   (define (list*? l) (or (null? l) (pair? l)))
   (define raise-sequence-empty-error
-    (let ([msg "sequence has no more values"])
-      (define (next)
-        (raise
-         (condition
-          (make-exn:fail:contract msg)
-          (make-message-condition msg))))
+    (let ([next (λ () (raise-exn make-exn:fail:contract "sequence has no more values"))])
       next))
 
   (define-record-type do-sequence (fields thunk))
