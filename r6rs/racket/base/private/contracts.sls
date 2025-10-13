@@ -14,9 +14,9 @@
           >/c
           <=/c
           >=/c)
-  (import (rnrs base)
-          (rnrs control)
-          (rnrs lists)
+  (import (rnrs base (6))
+          (rnrs control (6))
+          (rnrs lists (6))
           (r6rs racket base private lambda)
           (r6rs racket base private error)
           (r6rs racket base private lists))

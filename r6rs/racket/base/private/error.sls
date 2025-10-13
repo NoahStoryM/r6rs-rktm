@@ -10,12 +10,12 @@
           raise-result-error
           raise-arguments-error
           raise-range-error)
-  (import (rnrs base)
-          (rnrs conditions)
-          (rnrs control)
-          (rnrs exceptions)
-          (rnrs lists)
-          (rnrs records syntactic)
+  (import (rnrs base (6))
+          (rnrs conditions (6))
+          (rnrs control (6))
+          (rnrs exceptions (6))
+          (rnrs lists (6))
+          (rnrs records syntactic (6))
           (r6rs racket base private lambda)
           (r6rs racket base private exceptions)
           (r6rs racket base private format)

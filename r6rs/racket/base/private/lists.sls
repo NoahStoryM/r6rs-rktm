@@ -3,7 +3,7 @@
 (library (r6rs racket base private lists)
   (export andmap
           ormap)
-  (import (rnrs)
+  (import (rnrs (6))
           (r6rs racket base private error))
 
   (define (check-lst* who lst lst*)

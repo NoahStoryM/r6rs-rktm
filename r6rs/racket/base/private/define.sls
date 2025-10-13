@@ -2,7 +2,7 @@
 
 (library (r6rs racket base private define)
   (export define-syntax-rule)
-  (import (rnrs base))
+  (import (rnrs base (6)))
 
   (define-syntax define-syntax-rule
     (syntax-rules ()

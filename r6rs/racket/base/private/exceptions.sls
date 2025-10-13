@@ -9,9 +9,9 @@
           &exn:fail make-exn:fail exn:fail?
           &exn:fail:contract make-exn:fail:contract exn:fail:contract?
           &exn:fail:user make-exn:fail:user exn:fail:user?)
-  (import (rnrs base)
-          (rnrs conditions)
-          (rnrs exceptions)
+  (import (rnrs base (6))
+          (rnrs conditions (6))
+          (rnrs exceptions (6))
           (r6rs racket base private lambda)
           (r6rs racket base private define))
 

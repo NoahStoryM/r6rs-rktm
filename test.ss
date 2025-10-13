@@ -1,9 +1,9 @@
 #!r6rs
 
-(import (rnrs base)
-        (rnrs hashtables)
-        (rnrs io ports)
-        (rnrs io simple)
+(import (rnrs base (6))
+        (rnrs hashtables (6))
+        (rnrs io ports (6))
+        (rnrs io simple (6))
         (r6rs racket base))
 
 (define-syntax test

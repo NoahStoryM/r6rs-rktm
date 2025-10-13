@@ -4,8 +4,8 @@
   (export (rename [case-lambda case-λ]
                   [values identity])
           λ)
-  (import (rnrs base)
-          (rnrs control))
+  (import (rnrs base (6))
+          (rnrs control (6)))
 
   (define-syntax λ
     (syntax-rules ()

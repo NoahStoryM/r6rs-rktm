@@ -4,7 +4,7 @@
   (export let/cc
           current-continuation
           (rename [current-continuation cc]))
-  (import (rnrs base)
+  (import (rnrs base (6))
           (r6rs racket base private lambda)
           (r6rs racket base private define)
           (r6rs racket base private error))

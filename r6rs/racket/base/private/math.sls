@@ -6,7 +6,7 @@
           exact-integer?
           exact-nonnegative-integer?
           (rename [exact-nonnegative-integer? natural?]))
-  (import (rnrs base))
+  (import (rnrs base (6)))
 
   (define (add1 v) (+ v 1))
   (define (sub1 v) (- v 1))

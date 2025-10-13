@@ -4,8 +4,8 @@
   (export format-
           format
           ~a ~s)
-  (import (rnrs base)
-          (rnrs io ports)
+  (import (rnrs base (6))
+          (rnrs io ports (6))
           (r6rs racket base private lambda)
           (r6rs racket base private print))
 

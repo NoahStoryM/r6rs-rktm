@@ -7,10 +7,10 @@
           fprintf
           printf
           eprintf)
-  (import (rnrs base)
-          (rnrs control)
-          (rnrs io ports)
-          (rnrs io simple)
+  (import (rnrs base (6))
+          (rnrs control (6))
+          (rnrs io ports (6))
+          (rnrs io simple (6))
           (r6rs racket base private lambda))
 
   (define displayln
