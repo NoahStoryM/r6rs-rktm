@@ -100,7 +100,6 @@
    make-do-sequence
    define-sequence
    sequence?
-   ;; empty-sequence
    sequence-generate
    sequence-generate*
    in-values
