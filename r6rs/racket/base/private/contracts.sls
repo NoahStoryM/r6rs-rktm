@@ -1,6 +1,6 @@
 #!r6rs
 
-(library (rktm racket base private contracts)
+(library (r6rs racket base private contracts)
   (export (rename [not false?])
           and/c
           or/c
@@ -10,8 +10,8 @@
           none/c)
   (import (rnrs base)
           (rnrs lists)
-          (rktm racket base private lambda)
-          (rktm racket base private lists))
+          (r6rs racket base private lambda)
+          (r6rs racket base private lists))
 
   (define (any . _) #t)
   (define (any/c _) #t)

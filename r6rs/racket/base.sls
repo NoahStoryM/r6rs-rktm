@@ -1,6 +1,6 @@
 #!r6rs
 
-(library (rktm racket base)
+(library (r6rs racket base)
   (export
    ;; TODO box
    ;; box? unbox
@@ -119,15 +119,15 @@
    ;; void
    void
    void?)
-  (import (rktm racket base private contracts)
-          (rktm racket base private control)
-          (rktm racket base private define)
-          (rktm racket base private error)
-          (rktm racket base private exceptions)
-          (rktm racket base private lambda)
-          (rktm racket base private lists)
-          (rktm racket base private math)
-          (rktm racket base private print)
-          (rktm racket base private sequences)
-          (rktm racket base private format)
-          (rktm racket base private void)))
+  (import (r6rs racket base private contracts)
+          (r6rs racket base private control)
+          (r6rs racket base private define)
+          (r6rs racket base private error)
+          (r6rs racket base private exceptions)
+          (r6rs racket base private lambda)
+          (r6rs racket base private lists)
+          (r6rs racket base private math)
+          (r6rs racket base private print)
+          (r6rs racket base private sequences)
+          (r6rs racket base private format)
+          (r6rs racket base private void)))

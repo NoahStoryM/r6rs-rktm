@@ -1,6 +1,6 @@
 #!r6rs
 
-(library (rktm racket base private sequences)
+(library (r6rs racket base private sequences)
   (export make-do-sequence
           define-sequence
           sequence?
@@ -25,11 +25,11 @@
           (rnrs exceptions)
           (rnrs mutable-pairs)
           (rnrs records syntactic)
-          (rktm racket base private lambda)
-          (rktm racket base private contracts)
-          (rktm racket base private error)
-          (rktm racket base private exceptions)
-          (rktm racket base private math))
+          (r6rs racket base private lambda)
+          (r6rs racket base private contracts)
+          (r6rs racket base private error)
+          (r6rs racket base private exceptions)
+          (r6rs racket base private math))
 
   (define (list->values v*) (apply values v*))
   (define (list*? l) (or (null? l) (pair? l)))

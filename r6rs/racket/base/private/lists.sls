@@ -1,10 +1,10 @@
 #!r6rs
 
-(library (rktm racket base private lists)
+(library (r6rs racket base private lists)
   (export andmap
           ormap)
   (import (rnrs)
-          (rktm racket base private error))
+          (r6rs racket base private error))
 
   (define (check-lst* who lst lst*)
     (let loop ([len-1st (length lst)]

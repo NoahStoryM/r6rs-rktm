@@ -2,7 +2,7 @@
 
 (import (rnrs base)
         (rnrs io simple)
-        (rktm racket base))
+        (r6rs racket base))
 
 (define-syntax test
   (syntax-rules ()

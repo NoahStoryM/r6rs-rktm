@@ -1,6 +1,6 @@
 #!r6rs
 
-(library (rktm racket base private define)
+(library (r6rs racket base private define)
   (export define-syntax-rule)
   (import (rnrs base))
 

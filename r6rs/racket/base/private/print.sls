@@ -1,6 +1,6 @@
 #!r6rs
 
-(library (rktm racket base private print)
+(library (r6rs racket base private print)
   (export displayln
           writeln
           fprintf-
@@ -11,7 +11,7 @@
           (rnrs control)
           (rnrs io ports)
           (rnrs io simple)
-          (rktm racket base private lambda))
+          (r6rs racket base private lambda))
 
   (define displayln
     (case-λ

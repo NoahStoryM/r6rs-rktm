@@ -1,6 +1,6 @@
 #!r6rs
 
-(library (rktm racket base private lambda)
+(library (r6rs racket base private lambda)
   (export (rename [case-lambda case-λ]
                   [values identity])
           λ)

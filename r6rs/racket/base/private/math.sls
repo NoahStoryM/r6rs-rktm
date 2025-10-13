@@ -1,6 +1,6 @@
 #!r6rs
 
-(library (rktm racket base private math)
+(library (r6rs racket base private math)
   (export exact-integer?
           exact-nonnegative-integer?
           (rename [exact-nonnegative-integer? natural?]))

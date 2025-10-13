@@ -1,6 +1,6 @@
 #!r6rs
 
-(library (rktm racket base private exceptions)
+(library (r6rs racket base private exceptions)
   (export (rename [with-exception-handler call-with-exception-handler])
           with-handlers
           with-handlers*
@@ -12,8 +12,8 @@
   (import (rnrs base)
           (rnrs conditions)
           (rnrs exceptions)
-          (rktm racket base private lambda)
-          (rktm racket base private define))
+          (r6rs racket base private lambda)
+          (r6rs racket base private define))
 
   (define-syntax with-handlers
     (syntax-rules ()
