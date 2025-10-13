@@ -12,8 +12,7 @@
   (import (rnrs base (6))
           (rnrs conditions (6))
           (rnrs exceptions (6))
-          (r6rs racket base private lambda)
-          (r6rs racket base private define))
+          (r6rs racket base private lambda))
 
   (define-syntax with-handlers
     (syntax-rules ()

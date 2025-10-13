@@ -8,10 +8,13 @@
           printf
           eprintf)
   (import (rnrs base (6))
+          (rnrs conditions (6))
           (rnrs control (6))
+          (rnrs exceptions (6))
           (rnrs io ports (6))
           (rnrs io simple (6))
-          (r6rs racket base private lambda))
+          (r6rs racket base private lambda)
+          (r6rs racket base private exceptions))
 
   (define displayln
     (case-λ
@@ -33,12 +36,22 @@
                   (case directive
                     [(#\a #\A)
                      (when (null? vals)
-                       (assertion-violation 'fprintf "too few arguments"))
+                       (let ([msg "too few arguments"])
+                         (raise
+                          (condition
+                           (make-exn:fail:contract msg)
+                           (make-who-condition 'fprintf)
+                           (make-message-condition msg)))))
                      (display (car vals) out)
                      (loop (+ i 1) (cdr vals))]
                     [(#\s #\S)
                      (when (null? vals)
-                       (assertion-violation 'fprintf "too few arguments"))
+                       (let ([msg "too few arguments"])
+                         (raise
+                          (condition
+                           (make-exn:fail:contract msg)
+                           (make-who-condition 'fprintf)
+                           (make-message-condition msg)))))
                      (write (car vals) out)
                      (loop (+ i 1) (cdr vals))]
                     [(#\n #\%)
@@ -54,7 +67,12 @@
                   (display ch out)
                   (loop i vals))))
           (unless (null? vals)
-            (assertion-violation 'fprintf "too many arguments")))))
+            (let ([msg "too many arguments"])
+              (raise
+               (condition
+                (make-exn:fail:contract msg)
+                (make-who-condition 'fprintf)
+                (make-message-condition msg))))))))
   (define (fprintf out form . v*) (fprintf- out form v*))
   (define (printf  form . v*) (fprintf- (current-output-port) form v*))
   (define (eprintf form . v*) (fprintf- (current-error-port)  form v*)))
