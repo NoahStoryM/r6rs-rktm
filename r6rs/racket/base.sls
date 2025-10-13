@@ -15,6 +15,11 @@
    not/c
    any/c
    none/c
+   =/c
+   </c
+   >/c
+   <=/c
+   >=/c
 
    ;; control
    let/cc
@@ -80,6 +85,8 @@
    ormap
 
    ;; math
+   add1
+   sub1
    exact-integer?
    exact-nonnegative-integer?
    natural?
@@ -109,8 +116,8 @@
    in-vector
    in-bytevector
    in-list*
+   in-hashtable
    ;; TODO
-   ;; in-hash
    ;; in-port
 
    ;; format

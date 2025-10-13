@@ -1,7 +1,7 @@
 #!r6rs
 
 (import (rnrs base)
-        (rnrs io simple)
+        (rnrs hashtables)
         (r6rs racket base))
 
 (define-syntax test
@@ -44,6 +44,22 @@
     (let loop ([i 0] [acc '()])
       (if (and (< i n) (more?))
           (loop (+ i 1) (cons (get) acc))
+          (reverse acc)))))
+
+(define (collect-sequence-values seq)
+  (let-values ([(more? get) (sequence-generate seq)])
+    (let loop ([acc '()])
+      (if (more?)
+          (let-values ([result (get)])
+            (loop (cons result acc)))
+          (reverse acc)))))
+
+(define (collect-sequence-n-values seq n)
+  (let-values ([(more? get) (sequence-generate seq)])
+    (let loop ([i 0] [acc '()])
+      (if (and (< i n) (more?))
+          (let-values ([result (get)])
+            (loop (+ i 1) (cons (get) acc)))
           (reverse acc)))))
 
 ;; ==================== sequence? tests ====================
@@ -124,6 +140,16 @@
       (collect-sequence (in-list* '(1 2 3 4 5))))
 (test "in-list* single" '(42) (collect-sequence (in-list* '(42))))
 (test "in-list* empty" '() (collect-sequence (in-list* '())))
+
+;; ==================== in-hashtable tests ====================
+(display "\n=== Testing in-hashtable ===\n")
+(let ([ht (make-eq-hashtable)])
+  (hashtable-set! ht 'a 42)
+  (test "in-hashtable simple" '((a 42)) (collect-sequence-values ht)))
+(let ([ht (make-eq-hashtable)])
+  (hashtable-set! ht 'a 42)
+  (test "in-hashtable single" '((a 42)) (collect-sequence-values (in-hashtable ht))))
+(test "in-hashtable empty" '() (collect-sequence-values (in-hashtable (make-eq-hashtable))))
 
 ;; ==================== sequence-generate tests ====================
 (display "\n=== Testing sequence-generate ===\n")

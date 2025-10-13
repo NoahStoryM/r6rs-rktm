@@ -13,8 +13,7 @@
           in-vector
           in-bytevector
           in-list*
-          ;; TODO
-          ;; in-hash
+          in-hashtable
           ;; in-port
           )
   (import (rnrs base)
@@ -22,6 +21,7 @@
           (rnrs conditions)
           (rnrs control)
           (rnrs exceptions)
+          (rnrs hashtables)
           (rnrs mutable-pairs)
           (rnrs records syntactic)
           (r6rs racket base private lambda)
@@ -172,8 +172,18 @@
   (define in-vector (make-in-vec 'in-vector "vector?" vector? vector-ref vector-length))
   (define in-bytevector (make-in-vec 'in-bytevector "bytevector?" bytevector? bytevector-u8-ref bytevector-length))
 
+  (define (in-hashtable ht)
+    (unless (hashtable? ht)
+      (raise-argument-error 'in-hashtable "hashtable?" ht))
+    (let*-values ([(k* v*) (hashtable-entries ht)])
+      (let ([pos->element (λ (pos) (values (vector-ref k* pos) (vector-ref v* pos)))]
+            [continue-with-pos? (</c (vector-length k*))])
+        (make-do-sequence
+         (λ () (values pos->element #f add1 0 continue-with-pos? #f #f))))))
+
   (define-sequence natural? in-range)
   (define-sequence string? in-string)
   (define-sequence vector? in-vector)
   (define-sequence bytevector? in-bytevector)
-  (define-sequence list*? in-list*))
+  (define-sequence list*? in-list*)
+  (define-sequence hashtable? in-hashtable))

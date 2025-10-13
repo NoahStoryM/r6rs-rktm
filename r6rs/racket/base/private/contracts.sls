@@ -8,10 +8,17 @@
           not/c
           any
           any/c
-          none/c)
+          none/c
+          =/c
+          </c
+          >/c
+          <=/c
+          >=/c)
   (import (rnrs base)
+          (rnrs control)
           (rnrs lists)
           (r6rs racket base private lambda)
+          (r6rs racket base private error)
           (r6rs racket base private lists))
 
   (define (true? v) (eq? v #t))
@@ -38,4 +45,10 @@
     (cond
       [(eq? p any) none/c]
       [(eq? p none/c) any]
-      [else (λ v* (not (apply p v*)))])))
+      [else (λ v* (not (apply p v*)))]))
+
+  (define (=/c  n) (unless (real? n) (raise-argument-error '=/c  "real?" n)) (λ (v) (=  v n)))
+  (define (</c  n) (unless (real? n) (raise-argument-error '</c  "real?" n)) (λ (v) (<  v n)))
+  (define (>/c  n) (unless (real? n) (raise-argument-error '>/c  "real?" n)) (λ (v) (>  v n)))
+  (define (<=/c n) (unless (real? n) (raise-argument-error '<=/c "real?" n)) (λ (v) (<= v n)))
+  (define (>=/c n) (unless (real? n) (raise-argument-error '>=/c "real?" n)) (λ (v) (>= v n))))
