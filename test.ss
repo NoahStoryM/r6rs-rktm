@@ -2,6 +2,7 @@
 
 (import (rnrs base)
         (rnrs hashtables)
+        (rnrs io ports)
         (rnrs io simple)
         (r6rs racket base))
 
@@ -151,6 +152,61 @@
   (hashtable-set! ht 'a 42)
   (test "in-hashtable single" '((a 42)) (collect-sequence-values (in-hashtable ht))))
 (test "in-hashtable empty" '() (collect-sequence-values (in-hashtable (make-eq-hashtable))))
+
+;; ==================== in-port tests ====================
+(display "\n=== Testing in-port ===\n")
+
+;; Test with default read function
+(let ([port (open-string-input-port "1 2 3")])
+  (test "in-port with read" '(1 2 3) (collect-sequence (in-port read port))))
+
+;; Test with no arguments (uses current-input-port, harder to test directly)
+;; We'll focus on testable cases
+
+;; Test with read-char
+(let ([port (open-string-input-port "abc")])
+  (test "in-port with read-char" '(#\a #\b #\c)
+        (collect-sequence (in-port read-char port))))
+
+;; Test empty port
+(let ([port (open-string-input-port "")])
+  (test "in-port empty" '() (collect-sequence (in-port read port))))
+
+;; Test partial collection
+(let ([port (open-string-input-port "1 2 3 4 5 6 7 8 9 10")])
+  (test "in-port partial collection" '(1 2 3)
+        (collect-sequence-n (in-port read port) 3)))
+
+;; Test with single element
+(let ([port (open-string-input-port "42")])
+  (test "in-port single element" '(42)
+        (collect-sequence (in-port read port))))
+
+;; Test input-port? as sequence
+(let ([port (open-string-input-port "x y z")])
+  (test "input-port as sequence" '(x y z)
+        (collect-sequence port)))
+
+;; Test sequence? recognizes input-port
+(test "input-port is sequence" #t
+      (sequence? (open-string-input-port "test")))
+
+;; Test with mixed data types
+(let ([port (open-string-input-port "42 \"hello\" (1 2 3) #t")])
+  (test "in-port mixed types" '(42 "hello" (1 2 3) #t)
+        (collect-sequence (in-port read port))))
+
+;; Test sequence-generate with in-port
+(display "\n=== Testing sequence-generate with in-port ===\n")
+(let* ([port (open-string-input-port "10 20 30")]
+       [seq (in-port read port)])
+  (let-values ([(more? get) (sequence-generate seq)])
+    (test "in-port generate more? before" #t (more?))
+    (test "in-port generate first get" 10 (get))
+    (test "in-port generate more? after first" #t (more?))
+    (test "in-port generate second get" 20 (get))
+    (test "in-port generate third get" 30 (get))
+    (test "in-port generate more? at end" #f (more?))))
 
 ;; ==================== sequence-generate tests ====================
 (display "\n=== Testing sequence-generate ===\n")

@@ -14,14 +14,15 @@
           in-bytevector
           in-list*
           in-hashtable
-          ;; in-port
-          )
+          in-port)
   (import (rnrs base)
           (rnrs bytevectors)
           (rnrs conditions)
           (rnrs control)
           (rnrs exceptions)
           (rnrs hashtables)
+          (rnrs io ports)
+          (rnrs io simple)
           (rnrs mutable-pairs)
           (rnrs records syntactic)
           (r6rs racket base private lambda)
@@ -181,9 +182,21 @@
         (make-do-sequence
          (λ () (values pos->element #f add1 0 continue-with-pos? #f #f))))))
 
+  (define in-port
+    (λ ([r read] [in (current-input-port)])
+      (unless (procedure? r)
+        (raise-argument-error 'in-port "procedure?" r))
+      (unless (input-port? in)
+        (raise-argument-error 'in-port "input-port?" in))
+      (let ([continue-with-pos? (not/c port-eof?)])
+        (make-do-sequence
+         (λ () (values r #f values in continue-with-pos? #f #f))))))
+  (define (port->sequence in) (in-port read in))
+
   (define-sequence natural? in-range)
   (define-sequence string? in-string)
   (define-sequence vector? in-vector)
   (define-sequence bytevector? in-bytevector)
   (define-sequence list*? in-list*)
-  (define-sequence hashtable? in-hashtable))
+  (define-sequence hashtable? in-hashtable)
+  (define-sequence input-port? port->sequence))

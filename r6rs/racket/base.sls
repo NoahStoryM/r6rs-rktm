@@ -117,8 +117,7 @@
    in-bytevector
    in-list*
    in-hashtable
-   ;; TODO
-   ;; in-port
+   in-port
 
    ;; format
    format ~a ~s
