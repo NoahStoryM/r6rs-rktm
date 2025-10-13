@@ -146,64 +146,47 @@
               msg))))
 
   (define raise-range-error
-    (case-λ
-      [(name
-        type-description
-        index-prefix
-        index
-        in-value
-        lower-bound
-        upper-bound)
-       (raise-range-error
-        name
+    (λ (name
         type-description
         index-prefix
         index
         in-value
         lower-bound
         upper-bound
-        #f)]
-      [(name
-        type-description
-        index-prefix
-        index
-        in-value
-        lower-bound
-        upper-bound
-        alt-lower-bound)
-       (unless (symbol? name)
-         (raise-argument-error 'raise-range-error "symbol?" name))
-       (unless (string? type-description)
-         (raise-argument-error 'raise-range-error "string?" type-description))
-       (unless (exact-integer? index)
-         (raise-argument-error 'raise-range-error "exact-integer?" index))
-       (unless (exact-integer? lower-bound)
-         (raise-argument-error 'raise-range-error "exact-integer?" lower-bound))
-       (unless (exact-integer? upper-bound)
-         (raise-argument-error 'raise-range-error "exact-integer?" upper-bound))
-       (unless (or (not alt-lower-bound) (exact-integer? alt-lower-bound))
-         (raise-argument-error 'raise-range-error "(or/c #f exact-integer?)" alt-lower-bound))
-       (let ([index-name (string-append index-prefix "index")])
-         (cond
-           [(< upper-bound lower-bound)
-            (raise-arguments-error
-             name
-             (format "~a is out of range for empty ~a" index-name type-description)
-             index-name index)]
-           [(and alt-lower-bound (<= alt-lower-bound index lower-bound))
-            (raise-arguments-error
-             name
-             (format "~a is smaller than starting index" index-name)
-             index-name index
-             "starting index" lower-bound
-             "valid range" (make-unquoted-printing-string
-                            (format "[~a, ~a]" alt-lower-bound upper-bound))
-             type-description in-value)]
-           [else
-            (raise-arguments-error
-             name
-             (format "~a is out of range" index-name)
-             index-name index
-             "valid range" (make-unquoted-printing-string
-                            (format "[~a, ~a]" lower-bound upper-bound))
-             type-description in-value)]))])))
+        [alt-lower-bound #f])
+      (unless (symbol? name)
+        (raise-argument-error 'raise-range-error "symbol?" name))
+      (unless (string? type-description)
+        (raise-argument-error 'raise-range-error "string?" type-description))
+      (unless (exact-integer? index)
+        (raise-argument-error 'raise-range-error "exact-integer?" index))
+      (unless (exact-integer? lower-bound)
+        (raise-argument-error 'raise-range-error "exact-integer?" lower-bound))
+      (unless (exact-integer? upper-bound)
+        (raise-argument-error 'raise-range-error "exact-integer?" upper-bound))
+      (unless (or (not alt-lower-bound) (exact-integer? alt-lower-bound))
+        (raise-argument-error 'raise-range-error "(or/c #f exact-integer?)" alt-lower-bound))
+      (let ([index-name (string-append index-prefix "index")])
+        (cond
+          [(< upper-bound lower-bound)
+           (raise-arguments-error
+            name
+            (format "~a is out of range for empty ~a" index-name type-description)
+            index-name index)]
+          [(and alt-lower-bound (<= alt-lower-bound index lower-bound))
+           (raise-arguments-error
+            name
+            (format "~a is smaller than starting index" index-name)
+            index-name index
+            "starting index" lower-bound
+            "valid range" (make-unquoted-printing-string
+                           (format "[~a, ~a]" alt-lower-bound upper-bound))
+            type-description in-value)]
+          [else
+           (raise-arguments-error
+            name
+            (format "~a is out of range" index-name)
+            index-name index
+            "valid range" (make-unquoted-printing-string
+                           (format "[~a, ~a]" lower-bound upper-bound))
+            type-description in-value)])))))
