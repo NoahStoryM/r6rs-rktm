@@ -2,6 +2,7 @@
 
 (library (r6rs racket base private contracts)
   (export (rename [not false?])
+          true?
           and/c
           or/c
           not/c
@@ -12,6 +13,8 @@
           (rnrs lists)
           (r6rs racket base private lambda)
           (r6rs racket base private lists))
+
+  (define (true? v) (eq? v #t))
 
   (define (any . _) #t)
   (define (any/c _) #t)

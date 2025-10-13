@@ -9,6 +9,7 @@
 
    ;; contracts
    false?
+   true?
    and/c
    or/c
    not/c
