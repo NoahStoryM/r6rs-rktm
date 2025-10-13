@@ -28,7 +28,7 @@
       [(_ ([pred1 handler1] [pred2 handler2] ...) body1 body2 ...)
        (with-handlers ([pred1 handler1]) (with-handlers* ([pred2 handlers] ...) body1 body2 ...))]))
 
-  (define-condition-type &exn &error
+  (define-condition-type &exn &condition
     make-exn exn?
     [message exn-message])
   (define-condition-type &exn:fail &exn

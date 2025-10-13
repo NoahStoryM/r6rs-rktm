@@ -53,17 +53,26 @@
       [(message)
        (unless (symbol? message)
          (raise-argument-error 'raise-user-error "symbol?" message))
-       (let ([msg (make-message-condition
-                   (string-append "error: " (symbol->string message)))])
-         (raise (condition (make-exn:fail:user msg) msg)))]
+       (let ([msg (string-append "error: " (symbol->string message))])
+         (raise
+          (condition
+           (make-exn:fail:user msg)
+           (make-message-condition msg))))]
       [(who-or-fmt . v*)
        (cond
          [(symbol? who-or-fmt)
-          (let ([msg (make-message-condition (format- (car v*) (cdr v*)))])
-            (raise (condition (make-exn:fail:user msg) (make-who-condition who-or-fmt) msg)))]
+          (let ([msg (format- (car v*) (cdr v*))])
+            (raise
+             (condition
+              (make-exn:fail:user msg)
+              (make-who-condition who-or-fmt)
+              (make-message-condition msg))))]
          [(string? who-or-fmt)
-          (let ([msg (make-message-condition (format- who-or-fmt v*))])
-            (raise (condition (make-exn:fail:user msg) msg)))]
+          (let ([msg (format- who-or-fmt v*)])
+            (raise
+             (condition
+              (make-exn:fail:user msg)
+              (make-message-condition msg))))]
          [else
           (raise-argument-error 'raise-user-error "(or/c symbol? string?)" who-or-fmt)])]))
 
@@ -74,13 +83,13 @@
          (raise-argument-error who "symbol?" name))
        (unless (string? expected)
          (raise-argument-error who "string?" expected))
-       (let ([msg (make-message-condition
-                   (format "contract violation\n  expected: ~a\n  ~a: ~s"
-                           expected fact v))])
-         (raise (condition
-                 (make-exn:fail:contract msg)
-                 (make-who-condition name)
-                 msg)))]
+       (let ([msg (format "contract violation\n  expected: ~a\n  ~a: ~s"
+                           expected fact v)])
+         (raise
+          (condition
+           (make-exn:fail:contract msg)
+           (make-who-condition name)
+           (make-message-condition msg))))]
       [(name expected bad-pos . v*)
        (unless (symbol? name)
          (raise-argument-error who "symbol?" name))
@@ -107,13 +116,13 @@
                             (map (λ (arg) (format "\n   ~s" arg))
                                  other-args)))]
                 [msg
-                 (make-message-condition
-                  (format "contract violation\n  expected: ~a\n  ~a: ~s\n  argument position: ~a~a"
-                          expected fact bad-value pos-str other-args-str))])
-           (raise (condition
-                   (make-exn:fail:contract msg)
-                   (make-who-condition name)
-                   msg))))]))
+                 (format "contract violation\n  expected: ~a\n  ~a: ~s\n  argument position: ~a~a"
+                         expected fact bad-value pos-str other-args-str)])
+           (raise
+            (condition
+             (make-exn:fail:contract msg)
+             (make-who-condition name)
+             (make-message-condition msg)))))]))
   (define raise-argument-error (raise-fact-error 'raise-argument-error 'given))
   (define raise-result-error (raise-fact-error 'raise-result-error 'result))
 
@@ -123,27 +132,27 @@
     (unless (string? message)
       (raise-argument-error 'raise-arguments-error "string?" message))
     (let ([msg
-           (make-message-condition
-            (let loop ([pairs field-value-pairs] [acc '()])
-              (if (null? pairs)
-                  (apply string-append message (reverse acc))
-                  (let ([field-name (car pairs)] [pairs (cdr pairs)])
-                    (unless (string? field-name)
-                      (raise-argument-error 'raise-arguments-error "string?" field-name))
-                    (let ([field-value (car pairs)] [pairs (cdr pairs)])
-                      (let* ([value-str
-                              (if (unquoted-printing-string? field-value)
-                                  (unquoted-printing-string->string field-value)
-                                  (~s field-value))]
-                             [field-str
-                              (if (string-has? value-str #\newline)
-                                  (format "\n  ~a:~a" field-name value-str)
-                                  (format "\n  ~a: ~a" field-name value-str))])
-                        (loop pairs (cons field-str acc))))))))])
-      (raise (condition
-              (make-exn:fail:contract msg)
-              (make-who-condition name)
-              msg))))
+           (let loop ([pairs field-value-pairs] [acc '()])
+             (if (null? pairs)
+                 (apply string-append message (reverse acc))
+                 (let ([field-name (car pairs)] [pairs (cdr pairs)])
+                   (unless (string? field-name)
+                     (raise-argument-error 'raise-arguments-error "string?" field-name))
+                   (let ([field-value (car pairs)] [pairs (cdr pairs)])
+                     (let* ([value-str
+                             (if (unquoted-printing-string? field-value)
+                                 (unquoted-printing-string->string field-value)
+                                 (~s field-value))]
+                            [field-str
+                             (if (string-has? value-str #\newline)
+                                 (format "\n  ~a:~a" field-name value-str)
+                                 (format "\n  ~a: ~a" field-name value-str))])
+                       (loop pairs (cons field-str acc)))))))])
+      (raise
+       (condition
+        (make-exn:fail:contract msg)
+        (make-who-condition name)
+        (make-message-condition msg)))))
 
   (define raise-range-error
     (λ (name
