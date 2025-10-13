@@ -2,6 +2,7 @@
 
 (import (rnrs base)
         (rnrs hashtables)
+        (rnrs io simple)
         (r6rs racket base))
 
 (define-syntax test
