@@ -103,7 +103,7 @@
    ;; make-parameter
    ;; parameterize
 
-   ;; TODO sequences
+   ;; sequences
    make-do-sequence
    define-sequence
    sequence?
