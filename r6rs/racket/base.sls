@@ -2,10 +2,10 @@
 
 (library (r6rs racket base)
   (export
-   ;; TODO box
-   ;; box? unbox
-   ;; box mutable-box? box-set!
-   ;; immutable-box immutable-box?
+   ;; box
+   box? unbox
+   box mutable-box? box-set!
+   immutable-box immutable-box?
 
    ;; contracts
    false?
@@ -125,7 +125,8 @@
    ;; void
    void
    void?)
-  (import (r6rs racket base private contracts)
+  (import (r6rs racket base private boxes)
+          (r6rs racket base private contracts)
           (r6rs racket base private control)
           (r6rs racket base private define)
           (r6rs racket base private error)
