@@ -27,14 +27,14 @@
   (define (any/c _) #t)
   (define (none/c . _) #f)
 
-  (define (and/c p*)
+  (define (and/c . p*)
     (let ([p* (remq any p*)])
       (cond
         [(null? p*) any]
         [(null? (cdr p*)) (car p*)]
         [else
          (λ v* (andmap (λ (p) (apply p v*)) p*))])))
-  (define (or/c p*)
+  (define (or/c . p*)
     (let ([p* (remq none/c p*)])
       (cond
         [(null? p*) none/c]
