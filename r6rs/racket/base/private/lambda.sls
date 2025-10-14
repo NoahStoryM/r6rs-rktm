@@ -16,6 +16,8 @@
 
   (define-syntax opt-λ
     (syntax-rules ()
+      [(_ (v ...) () () b ...)
+       (lambda (v ...) b ...)]
       [(_ (v ...) () (c ...) b ...)
        (case-lambda c ... [(v ...) b ...])]
       [(_ (v0 ...) ([v1 e1] [v2 e2] ...) (c ...) b ...)
