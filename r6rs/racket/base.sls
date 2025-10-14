@@ -50,8 +50,8 @@
    &exn:fail:user make-exn:fail:user exn:fail:user?
 
    ;; TODO for
-   ;; for/fold
-   ;; for*/fold
+   for/fold
+   for*/fold
    ;; for/void  for
    ;; for*/void for*
    ;; for/list
@@ -74,7 +74,10 @@
    ;; for*/product
 
    ;; TODO function
-   ;; compose ∘
+   ;; compose
+   ;; compose1
+   ;; ∘
+   ;; ∘₁
 
    ;; lambda
    λ
@@ -127,6 +130,8 @@
           (r6rs racket base private define)
           (r6rs racket base private error)
           (r6rs racket base private exceptions)
+          (r6rs racket base private for)
+          ;; (r6rs racket base private functions)
           (r6rs racket base private lambda)
           (r6rs racket base private lists)
           (r6rs racket base private math)
