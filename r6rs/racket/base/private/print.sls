@@ -13,8 +13,8 @@
           (rnrs exceptions (6))
           (rnrs io ports (6))
           (rnrs io simple (6))
-          (r6rs racket base private lambda)
-          (r6rs racket base private exceptions))
+          (r6rs racket base private exceptions)
+          (r6rs racket base private lambda))
 
   (define displayln
     (case-λ

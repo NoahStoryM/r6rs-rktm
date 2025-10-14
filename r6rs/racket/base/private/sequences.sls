@@ -25,10 +25,10 @@
           (rnrs io simple (6))
           (rnrs mutable-pairs (6))
           (rnrs records syntactic (6))
-          (r6rs racket base private lambda)
           (r6rs racket base private contracts)
           (r6rs racket base private error)
           (r6rs racket base private exceptions)
+          (r6rs racket base private lambda)
           (r6rs racket base private math))
 
   (define (list->values v*) (apply values v*))

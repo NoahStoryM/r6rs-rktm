@@ -98,11 +98,6 @@
    printf
    eprintf
 
-   ;; TODO parameter
-   ;; parameter?
-   ;; make-parameter
-   ;; parameterize
-
    ;; sequences
    make-do-sequence
    define-sequence

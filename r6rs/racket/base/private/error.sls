@@ -16,8 +16,8 @@
           (rnrs exceptions (6))
           (rnrs lists (6))
           (rnrs records syntactic (6))
-          (r6rs racket base private lambda)
           (r6rs racket base private exceptions)
+          (r6rs racket base private lambda)
           (r6rs racket base private format)
           (r6rs racket base private math))
 
