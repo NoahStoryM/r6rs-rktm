@@ -54,6 +54,7 @@
                  :result result-expr
                  ([id1 seq-expr1])
          (for*/fold [rest-id (identity rest-id)]
+                    :result (identity rest-id)
                     ([id2 seq-expr2] ...)
            body-or-break ...
            body))]
