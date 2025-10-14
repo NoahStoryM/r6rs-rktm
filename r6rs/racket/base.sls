@@ -79,6 +79,7 @@
    ;; lambda
    λ
    case-λ
+   identity
 
    ;; lists
    andmap

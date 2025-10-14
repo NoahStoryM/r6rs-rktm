@@ -1,9 +1,9 @@
 #!r6rs
 
 (library (r6rs racket base private lambda)
-  (export (rename [case-lambda case-λ]
-                  [values identity])
-          λ)
+  (export (rename [case-lambda case-λ])
+          λ
+          identity)
   (import (rnrs base (6))
           (rnrs control (6)))
 
@@ -27,4 +27,9 @@
         (c ... [(v0 ...) (letrec* ([v1 e1] [v2 e2] ...) b ...)])
         b ...)]
       [(_ (v0 ...) (v1 v2 ...) () b ...)
-       (opt-λ (v0 ... v1) (v2 ...) () b ...)])))
+       (opt-λ (v0 ... v1) (v2 ...) () b ...)]))
+
+  (define-syntax identity
+    (syntax-rules ()
+      [(_ (id ...)) (values id ...)]
+      [(_ (id ... . rest-id)) (apply values id ... rest-id)])))
