@@ -34,9 +34,8 @@
 
   (define (list->values v*) (apply values v*))
   (define (list*? l) (or (null? l) (pair? l)))
-  (define raise-sequence-empty-error
-    (let ([next (λ () (raise-exn make-exn:fail:contract "sequence has no more values"))])
-      next))
+  (define (raise-sequence-empty-error)
+    (raise-exn make-exn:fail:contract "sequence has no more values"))
 
   (define-record-type do-sequence (fields thunk))
   (define table `([,do-sequence? . ,values]))
@@ -64,7 +63,7 @@
   (define (sequence-generate seq)
     (unless (sequence? seq)
       (raise-argument-error 'sequence-generate "sequence?" seq))
-    (let ([vals #f] [next (λ () (sequence-generate* seq))])
+    (let ([vals #f] [next (λ () (sequence-generate* (sequence->do-sequence seq)))])
       (define (more?)
         (or (not (not vals))
             (let-values ([(vals1 next1) (next)])
@@ -100,9 +99,8 @@
                 (if (apply continue-with-val? val*)
                     (let ([pos (early-next-pos pos)])
                       (if (apply continue-after-pos+val? pos val*)
-                          (let* ([pos (next-pos pos)]
-                                 [next (λ () (loop pos))])
-                            (values val* next))
+                          (let ([pos (next-pos pos)])
+                            (values val* (λ () (loop pos))))
                           (values #f raise-sequence-empty-error)))
                     (values #f raise-sequence-empty-error)))
               (values #f raise-sequence-empty-error))))))
