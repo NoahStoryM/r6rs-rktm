@@ -46,7 +46,7 @@
                  for-clause*
          body-or-break ... body)]))
   (define-syntax for*/fold
-    (syntax-rules (:when :unless :do :break :final)
+    (syntax-rules (:result :when :unless :do :break :final)
       [(_ [rest-id init-expr]
           :result result-expr
           ()
