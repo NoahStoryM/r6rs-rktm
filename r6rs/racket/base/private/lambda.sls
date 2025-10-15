@@ -7,13 +7,6 @@
   (import (rnrs base (6))
           (rnrs control (6)))
 
-  (define-syntax λ
-    (syntax-rules ()
-      [(_ (v1 v2 ...) b1 b2 ...)
-       (opt-λ () (v1 v2 ...) () b1 b2 ...)]
-      [(_ v b1 b2 ...)
-       (lambda v b1 b2 ...)]))
-
   (define-syntax opt-λ
     (syntax-rules ()
       [(_ (v ...) () () b ...)
@@ -28,6 +21,13 @@
         b ...)]
       [(_ (v0 ...) (v1 v2 ...) () b ...)
        (opt-λ (v0 ... v1) (v2 ...) () b ...)]))
+
+  (define-syntax λ
+    (syntax-rules ()
+      [(_ (v1 v2 ...) b1 b2 ...)
+       (opt-λ () (v1 v2 ...) () b1 b2 ...)]
+      [(_ v b1 b2 ...)
+       (lambda v b1 b2 ...)]))
 
   (define-syntax identity
     (syntax-rules ()
