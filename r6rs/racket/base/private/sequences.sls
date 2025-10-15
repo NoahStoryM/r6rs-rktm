@@ -3,6 +3,7 @@
 (library (r6rs racket base private sequences)
   (export make-do-sequence
           do-sequence?
+          initiate-do-sequence
           define-sequence
           sequence?
           sequence-generate
@@ -38,6 +39,228 @@
     (raise-exn make-exn:fail:contract "sequence has no more values"))
 
   (define-record-type do-sequence (fields thunk))
+  (define-syntax initiate-do-sequence
+    (syntax-rules (:init-pos
+                   :continue-with-pos?
+                   :pos->element
+                   :continue-with-val?
+                   :early-next-pos
+                   :continue-after-pos+val?
+                   :next-pos)
+      [(_ :init-pos init-pos
+          :continue-with-pos? continue-with-pos?
+          :pos->element pos->element
+          :continue-with-val? continue-with-val?
+          :early-next-pos early-next-pos
+          :continue-after-pos+val? continue-after-pos+val?
+          :next-pos next-pos)
+       (make-do-sequence
+        (λ ()
+          (values pos->element
+                  early-next-pos
+                  next-pos
+                  init-pos
+                  continue-with-pos?
+                  continue-with-val?
+                  continue-after-pos+val?)))]
+
+      [(_ :init-pos init-pos
+          :pos->element pos->element
+          :next-pos next-pos)
+       (initiate-do-sequence
+        :init-pos init-pos
+        :continue-with-pos? #f
+        :pos->element pos->element
+        :continue-with-val? #f
+        :early-next-pos #f
+        :continue-after-pos+val? #f
+        :next-pos next-pos)]
+
+      [(_ :init-pos init-pos
+          :continue-with-pos? continue-with-pos?
+          :pos->element pos->element
+          :next-pos next-pos)
+       (initiate-do-sequence
+        :init-pos init-pos
+        :continue-with-pos? continue-with-pos?
+        :pos->element pos->element
+        :continue-with-val? #f
+        :early-next-pos #f
+        :continue-after-pos+val? #f
+        :next-pos next-pos)]
+      [(_ :init-pos init-pos
+          :pos->element pos->element
+          :continue-with-val? continue-with-val?
+          :next-pos next-pos)
+       (initiate-do-sequence
+        :init-pos init-pos
+        :continue-with-pos? #f
+        :pos->element pos->element
+        :continue-with-val? continue-with-val?
+        :early-next-pos #f
+        :continue-after-pos+val? #f
+        :next-pos next-pos)]
+      [(_ :init-pos init-pos
+          :pos->element pos->element
+          :early-next-pos early-next-pos
+          :next-pos next-pos)
+       (initiate-do-sequence
+        :init-pos init-pos
+        :continue-with-pos? #f
+        :pos->element pos->element
+        :continue-with-val? #f
+        :early-next-pos early-next-pos
+        :continue-after-pos+val? #f
+        :next-pos next-pos)]
+      [(_ :init-pos init-pos
+          :pos->element pos->element
+          :continue-after-pos+val? continue-after-pos+val?
+          :next-pos next-pos)
+       (initiate-do-sequence
+        :init-pos init-pos
+        :continue-with-pos? #f
+        :pos->element pos->element
+        :continue-with-val? #f
+        :early-next-pos #f
+        :continue-after-pos+val? continue-after-pos+val?
+        :next-pos next-pos)]
+
+      [(_ :init-pos init-pos
+          :pos->element pos->element
+          :early-next-pos early-next-pos
+          :continue-after-pos+val? continue-after-pos+val?
+          :next-pos next-pos)
+       (initiate-do-sequence
+        :init-pos init-pos
+        :continue-with-pos? #f
+        :pos->element pos->element
+        :continue-with-val? #f
+        :early-next-pos early-next-pos
+        :continue-after-pos+val? continue-after-pos+val?
+        :next-pos next-pos)]
+      [(_ :init-pos init-pos
+          :pos->element pos->element
+          :continue-with-val? continue-with-val?
+          :continue-after-pos+val? continue-after-pos+val?
+          :next-pos next-pos)
+       (initiate-do-sequence
+        :init-pos init-pos
+        :continue-with-pos? #f
+        :pos->element pos->element
+        :continue-with-val? continue-with-val?
+        :early-next-pos #f
+        :continue-after-pos+val? continue-after-pos+val?
+        :next-pos next-pos)]
+      [(_ :init-pos init-pos
+          :pos->element pos->element
+          :continue-with-val? continue-with-val?
+          :early-next-pos early-next-pos
+          :next-pos next-pos)
+       (initiate-do-sequence
+        :init-pos init-pos
+        :continue-with-pos? #f
+        :pos->element pos->element
+        :continue-with-val? continue-with-val?
+        :early-next-pos early-next-pos
+        :continue-after-pos+val? #f
+        :next-pos next-pos)]
+      [(_ :init-pos init-pos
+          :continue-with-pos? continue-with-pos?
+          :pos->element pos->element
+          :continue-after-pos+val? continue-after-pos+val?
+          :next-pos next-pos)
+       (initiate-do-sequence
+        :init-pos init-pos
+        :continue-with-pos? continue-with-pos?
+        :pos->element pos->element
+        :continue-with-val? #f
+        :early-next-pos #f
+        :continue-after-pos+val? continue-after-pos+val?
+        :next-pos next-pos)]
+      [(_ :init-pos init-pos
+          :continue-with-pos? continue-with-pos?
+          :pos->element pos->element
+          :early-next-pos early-next-pos
+          :next-pos next-pos)
+       (initiate-do-sequence
+        :init-pos init-pos
+        :continue-with-pos? continue-with-pos?
+        :pos->element pos->element
+        :continue-with-val? #f
+        :early-next-pos early-next-pos
+        :continue-after-pos+val? #f
+        :next-pos next-pos)]
+      [(_ :init-pos init-pos
+          :continue-with-pos? continue-with-pos?
+          :pos->element pos->element
+          :continue-with-val? continue-with-val?
+          :next-pos next-pos)
+       (initiate-do-sequence
+        :init-pos init-pos
+        :continue-with-pos? continue-with-pos?
+        :pos->element pos->element
+        :continue-with-val? continue-with-val?
+        :early-next-pos #f
+        :continue-after-pos+val? #f
+        :next-pos next-pos)]
+
+      [(_ :init-pos init-pos
+          :pos->element pos->element
+          :continue-with-val? continue-with-val?
+          :early-next-pos early-next-pos
+          :continue-after-pos+val? continue-after-pos+val?
+          :next-pos next-pos)
+       (initiate-do-sequence
+        :init-pos init-pos
+        :continue-with-pos? #f
+        :pos->element pos->element
+        :continue-with-val? continue-with-val?
+        :early-next-pos early-next-pos
+        :continue-after-pos+val? continue-after-pos+val?
+        :next-pos next-pos)]
+      [(_ :init-pos init-pos
+          :continue-with-pos? continue-with-pos?
+          :pos->element pos->element
+          :early-next-pos early-next-pos
+          :continue-after-pos+val? continue-after-pos+val?
+          :next-pos next-pos)
+       (initiate-do-sequence
+        :init-pos init-pos
+        :continue-with-pos? continue-with-pos?
+        :pos->element pos->element
+        :continue-with-val? #f
+        :early-next-pos early-next-pos
+        :continue-after-pos+val? continue-after-pos+val?
+        :next-pos next-pos)]
+      [(_ :init-pos init-pos
+          :continue-with-pos? continue-with-pos?
+          :pos->element pos->element
+          :continue-with-val? continue-with-val?
+          :continue-after-pos+val? continue-after-pos+val?
+          :next-pos next-pos)
+       (initiate-do-sequence
+        :init-pos init-pos
+        :continue-with-pos? continue-with-pos?
+        :pos->element pos->element
+        :continue-with-val? continue-with-val?
+        :early-next-pos #f
+        :continue-after-pos+val? continue-after-pos+val?
+        :next-pos next-pos)]
+      [(_ :init-pos init-pos
+          :continue-with-pos? continue-with-pos?
+          :pos->element pos->element
+          :continue-with-val? continue-with-val?
+          :early-next-pos early-next-pos
+          :next-pos next-pos)
+       (initiate-do-sequence
+        :init-pos init-pos
+        :continue-with-pos? continue-with-pos?
+        :pos->element pos->element
+        :continue-with-val? continue-with-val?
+        :early-next-pos early-next-pos
+        :continue-after-pos+val? #f
+        :next-pos next-pos)]))
+
   (define table `([,do-sequence? . ,values]))
   (define sequence-queue (cons table table))
   (define (define-sequence seq? in-seq)
@@ -126,8 +349,11 @@
              (if (< step 0)
                  (λ (pos) (>? pos end))
                  (λ (pos) (<? pos end)))])
-        (make-do-sequence
-         (λ () (values values #f next-pos start continue-with-pos? #f #f)))))
+        (initiate-do-sequence
+         :init-pos start
+         :continue-with-pos? continue-with-pos?
+         :pos->element values
+         :next-pos next-pos)))
     (case-λ
       [(end) (in-range 0 end 1)]
       [(start end) (in-range start end 1)]
@@ -136,8 +362,11 @@
   (define in-inclusive-range (make-in-range 'in-inclusive-range >= <=))
 
   (define (in-list* l)
-    (make-do-sequence
-     (λ () (values car #f cdr l pair? #f #f))))
+    (initiate-do-sequence
+     :init-pos l
+     :continue-with-pos? pair?
+     :pos->element car
+     :next-pos cdr))
 
   (define (make-in-vec who expected vec? vec-ref vec-length)
     (define (in-vec vec start stop step)
@@ -149,15 +378,15 @@
         (raise-argument-error who "real?" stop))
       (unless (real? step)
         (raise-argument-error who "real?" step))
-      (let ([stop (or stop (vec-length vec))]
-            [pos->element (λ (pos) (vec-ref vec pos))]
-            [next-pos (λ (pos) (+ pos step))]
-            [continue-with-pos?
-             (if (< step 0)
-                 (λ (pos) (> pos stop))
-                 (λ (pos) (< pos stop)))])
-        (make-do-sequence
-         (λ () (values pos->element #f next-pos start continue-with-pos? #f #f)))))
+      (let ([stop (or stop (vec-length vec))])
+        (initiate-do-sequence
+         :init-pos start
+         :continue-with-pos?
+         (if (< step 0)
+             (λ (pos) (> pos stop))
+             (λ (pos) (< pos stop)))
+         :pos->element (λ (pos) (vec-ref vec pos))
+         :next-pos (λ (pos) (+ pos step)))))
     (case-λ
       [(vec) (in-vec vec 0 (vec-length vec) 1)]
       [(vec start) (in-vec vec start (vec-length vec) 1)]
@@ -170,11 +399,12 @@
   (define (in-hashtable ht)
     (unless (hashtable? ht)
       (raise-argument-error 'in-hashtable "hashtable?" ht))
-    (let*-values ([(k* v*) (hashtable-entries ht)])
-      (let ([pos->element (λ (pos) (values (vector-ref k* pos) (vector-ref v* pos)))]
-            [continue-with-pos? (</c (vector-length k*))])
-        (make-do-sequence
-         (λ () (values pos->element #f add1 0 continue-with-pos? #f #f))))))
+    (let-values ([(k* v*) (hashtable-entries ht)])
+      (initiate-do-sequence
+       :init-pos 0
+       :continue-with-pos? (</c (vector-length k*))
+       :pos->element (λ (pos) (values (vector-ref k* pos) (vector-ref v* pos)))
+       :next-pos add1)))
 
   (define in-port
     (λ ([r read] [in (current-input-port)])
@@ -182,9 +412,11 @@
         (raise-argument-error 'in-port "procedure?" r))
       (unless (input-port? in)
         (raise-argument-error 'in-port "input-port?" in))
-      (let ([continue-with-pos? (not/c port-eof?)])
-        (make-do-sequence
-         (λ () (values r #f values in continue-with-pos? #f #f))))))
+      (initiate-do-sequence
+       :init-pos in
+       :continue-with-pos? (not/c port-eof?)
+       :pos->element r
+       :next-pos values)))
   (define (port->sequence in) (in-port read in))
 
   (define-sequence natural? in-range)
