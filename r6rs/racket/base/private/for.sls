@@ -39,11 +39,11 @@
                       ([(more? get) [id seq-expr]] ...)
          body-or-break ... body)]
       [(_ [rest-id init-expr]
-          for-clause
+          for-clause*
          body-or-break ... body)
        (for/fold [rest-id init-expr]
                  :result (identity rest-id)
-                 for-clause
+                 for-clause*
          body-or-break ... body)]))
   (define-syntax for*/fold
     (syntax-rules (:when :unless :do :break :final)
@@ -57,31 +57,29 @@
          body-or-break ... body)]
       [(_ [rest-id init-expr]
           :result result-expr
-          ([id seq-expr])
+          (for-clause)
          body-or-break ... body)
        (for/fold [rest-id init-expr]
                  :result result-expr
-                 ([id seq-expr])
+                 (for-clause)
          body-or-break ... body)]
       [(_ [rest-id init-expr]
           :result result-expr
-          ([id1 seq-expr1]
-           [id2 seq-expr2]
-           ...)
+          (for-clause . for-clause*)
          body-or-break ... body)
        (for/fold [rest-id init-expr]
                  :result result-expr
-                 ([id1 seq-expr1])
+                 (for-clause)
          (for*/fold [rest-id (identity rest-id)]
                     :result (identity rest-id)
-                    ([id2 seq-expr2] ...)
+                    for-clause*
            body-or-break ...
            body))]
       [(_ [rest-id init-expr]
-          for-clause
+          for-clause*
          body-or-break ... body)
        (for*/fold [rest-id init-expr]
                   :result (identity rest-id)
-                  for-clause
+                  for-clause*
          body-or-break ... body)]))
   )
