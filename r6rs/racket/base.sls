@@ -45,6 +45,7 @@
    &exn:fail:user make-exn:fail:user exn:fail:user?
 
    ;; TODO for
+   :result :when :unless :do :break :final
    for/fold
    for*/fold
    ;; for/void  for
@@ -98,6 +99,13 @@
    eprintf
 
    ;; sequences
+   :init-pos
+   :continue-with-pos?
+   :pos->element
+   :continue-with-val?
+   :early-next-pos
+   :continue-after-pos+val?
+   :next-pos
    make-do-sequence
    do-sequence?
    initiate-do-sequence

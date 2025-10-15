@@ -1,7 +1,14 @@
 #!r6rs
 
 (library (r6rs racket base private sequences)
-  (export make-do-sequence
+  (export :init-pos
+          :continue-with-pos?
+          :pos->element
+          :continue-with-val?
+          :early-next-pos
+          :continue-after-pos+val?
+          :next-pos
+          make-do-sequence
           do-sequence?
           initiate-do-sequence
           define-sequence
@@ -31,7 +38,16 @@
           (r6rs racket base private error)
           (r6rs racket base private exceptions)
           (r6rs racket base private lambda)
-          (r6rs racket base private math))
+          (r6rs racket base private math)
+          (r6rs racket undefined))
+
+  (define :init-pos undefined)
+  (define :continue-with-pos? undefined)
+  (define :pos->element undefined)
+  (define :continue-with-val? undefined)
+  (define :early-next-pos undefined)
+  (define :continue-after-pos+val? undefined)
+  (define :next-pos undefined)
 
   (define (list->values v*) (apply values v*))
   (define (list*? l) (or (null? l) (pair? l)))

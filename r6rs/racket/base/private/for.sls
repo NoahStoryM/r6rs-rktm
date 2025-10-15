@@ -1,11 +1,20 @@
 #!r6rs
 
 (library (r6rs racket base private for)
-  (export for/fold
+  (export :result :when :unless :do :break :final
+          for/fold
           for*/fold)
   (import (rnrs base (6))
           (r6rs racket base private lambda)
-          (r6rs racket base private sequences))
+          (r6rs racket base private sequences)
+          (r6rs racket undefined))
+
+  (define :result undefined)
+  (define :when undefined)
+  (define :unless undefined)
+  (define :do undefined)
+  (define :break undefined)
+  (define :final undefined)
 
   (define-syntax for/fold-loop
     (syntax-rules ()
@@ -13,19 +22,19 @@
           result-expr
           ([(more?1 get1) [id1 seq-expr1]] ...)
           ([id2 seq-expr2] [id3 seq-expr3] ...)
-         body-or-break ... body)
+          body-or-break ... body)
        (for/fold-loop [rest-id init-expr]
                       result-expr
                       ([(more?1 get1) [id1 seq-expr1]]
                        ...
                        [(more?2 get2) [id2 seq-expr2]])
                       ([id3 seq-expr3] ...)
-         body-or-break ... body)]
+                      body-or-break ... body)]
       [(_ [rest-id init-expr]
           result-expr
           ([(more? get) [id seq-expr]] ...)
           ()
-         body-or-break ... body)
+          body-or-break ... body)
        (let-values ([(more? get) (sequence-generate seq-expr)] ...)
          (define (loop . rest-id)
            (if (and (more?) ...)
