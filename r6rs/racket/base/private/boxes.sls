@@ -3,7 +3,7 @@
 (library (r6rs racket base private boxes)
   (export box? unbox
           box mutable-box? box-set!
-          immutable-box immutable-box?)
+          box-immutable immutable-box?)
   (import (rnrs base (6))
           (rnrs records syntactic (6))
           (r6rs racket base private error))
@@ -11,7 +11,7 @@
   (define-record-type (mbox box mutable-box?)
     (fields (mutable value unmbox box-set!)))
 
-  (define-record-type (immbox immutable-box immutable-box?)
+  (define-record-type (immbox box-immutable immutable-box?)
     (fields (immutable value unimmbox)))
 
   (define (box? v) (or (mutable-box? v) (immutable-box? v)))

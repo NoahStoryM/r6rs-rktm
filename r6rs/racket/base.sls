@@ -5,7 +5,7 @@
    ;; box
    box? unbox
    box mutable-box? box-set!
-   immutable-box immutable-box?
+   box-immutable immutable-box?
 
    ;; contracts
    false?
