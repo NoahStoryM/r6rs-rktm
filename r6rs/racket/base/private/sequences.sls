@@ -2,6 +2,7 @@
 
 (library (r6rs racket base private sequences)
   (export make-do-sequence
+          do-sequence?
           define-sequence
           sequence?
           sequence-generate

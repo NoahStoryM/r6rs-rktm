@@ -104,6 +104,7 @@
 
    ;; sequences
    make-do-sequence
+   do-sequence?
    define-sequence
    sequence?
    sequence-generate
