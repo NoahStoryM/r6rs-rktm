@@ -45,29 +45,21 @@
    &exn:fail:user make-exn:fail:user exn:fail:user?
 
    ;; TODO for
-   :result :when :unless :do :break :final
-   for/fold
-   for*/fold
-   ;; for/void  for
-   ;; for*/void for*
-   ;; for/list
-   ;; for*/list
-   ;; for/vector
-   ;; for*/vector
-   ;; for/hash
-   ;; for*/hash
-   ;; for/and
-   ;; for*/and
-   ;; for/or
-   ;; for*/or
-   ;; for/first
-   ;; for*/first
-   ;; for/last
-   ;; for*/last
-   ;; for/sum
-   ;; for*/sum
-   ;; for/product
-   ;; for*/product
+   :result :length :fill
+   :when :unless :do
+   :break :final
+   for/foldl for*/foldl
+   ;; for/void for*/void
+   ;; for for*
+   ;; for/list for*/list
+   ;; for/vector for*/vector
+   ;; for/hash for*/hash
+   ;; for/and for*/and
+   ;; for/or for*/or
+   ;; for/first for*/first
+   ;; for/last for*/last
+   ;; for/sum for*/sum
+   ;; for/product for*/product
 
    ;; TODO function
    ;; compose
