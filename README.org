@@ -1,12 +1,12 @@
-#+TITLE: RKTM
+#+TITLE: R0RR
 #+AUTHOR: Noah Ma
 #+EMAIL: noahstorym@gmail.com
 
 * Table of Contents                                       :TOC_5_gh:noexport:
-- [[#raco-pkg-install-r6rs-rktm][raco pkg install r6rs-rktm]]
+- [[#raco-pkg-install-r0rr][raco pkg install r0rr]]
 
-* raco pkg install r6rs-rktm
+* raco pkg install r0rr
 
 #+begin_src scheme
-(import (r6rs racket base))
+(import (r0rr racket base))
 #+end_src
