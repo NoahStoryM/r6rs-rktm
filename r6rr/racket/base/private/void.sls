@@ -1,6 +1,6 @@
 #!r6rs
 
-(library (r6rs racket base private void)
+(library (r6rr racket base private void)
   (export void void?)
   (import (rnrs base (6)))
 

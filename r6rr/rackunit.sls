@@ -1,6 +1,6 @@
 #!r6rs
 
-(library (r6rs rackunit)
+(library (r6rr rackunit)
   (export
    ;; TODO Basic Checks
    ;; check-eq?

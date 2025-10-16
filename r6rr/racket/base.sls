@@ -1,6 +1,6 @@
 #!r6rs
 
-(library (r6rs racket base)
+(library (r6rr racket base)
   (export
    ;; contracts
    false?
@@ -122,17 +122,17 @@
    ;; void
    void
    void?)
-  (import (r6rs racket base private contracts)
-          (r6rs racket base private control)
-          (r6rs racket base private define)
-          (r6rs racket base private error)
-          (r6rs racket base private exceptions)
-          (r6rs racket base private for)
-          ;; (r6rs racket base private functions)
-          (r6rs racket base private lambda)
-          (r6rs racket base private lists)
-          (r6rs racket base private math)
-          (r6rs racket base private print)
-          (r6rs racket base private sequences)
-          (r6rs racket base private format)
-          (r6rs racket base private void)))
+  (import (r6rr racket base private contracts)
+          (r6rr racket base private control)
+          (r6rr racket base private define)
+          (r6rr racket base private error)
+          (r6rr racket base private exceptions)
+          (r6rr racket base private for)
+          ;; (r6rr racket base private functions)
+          (r6rr racket base private lambda)
+          (r6rr racket base private lists)
+          (r6rr racket base private math)
+          (r6rr racket base private print)
+          (r6rr racket base private sequences)
+          (r6rr racket base private format)
+          (r6rr racket base private void)))

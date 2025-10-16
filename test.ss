@@ -4,7 +4,7 @@
         (rnrs hashtables (6))
         (rnrs io ports (6))
         (rnrs io simple (6))
-        (r6rs racket base))
+        (r6rr racket base))
 
 (define-syntax test
   (syntax-rules ()

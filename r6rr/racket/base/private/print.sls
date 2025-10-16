@@ -1,6 +1,6 @@
 #!r6rs
 
-(library (r6rs racket base private print)
+(library (r6rr racket base private print)
   (export displayln
           writeln
           fprintf-
@@ -13,8 +13,8 @@
           (rnrs exceptions (6))
           (rnrs io ports (6))
           (rnrs io simple (6))
-          (r6rs racket base private exceptions)
-          (r6rs racket base private lambda))
+          (r6rr racket base private exceptions)
+          (r6rr racket base private lambda))
 
   (define displayln
     (case-λ

@@ -1,13 +1,13 @@
 #!r6rs
 
-(library (r6rs racket base private control)
+(library (r6rr racket base private control)
   (export let/cc
           current-continuation
           (rename [current-continuation cc]))
   (import (rnrs base (6))
-          (r6rs racket base private lambda)
-          (r6rs racket base private define)
-          (r6rs racket base private error))
+          (r6rr racket base private lambda)
+          (r6rr racket base private define)
+          (r6rr racket base private error))
 
   (define-syntax-rule (let/cc k b ...)
     (call/cc (λ (k) b ...)))

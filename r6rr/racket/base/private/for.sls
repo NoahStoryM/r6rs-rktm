@@ -1,14 +1,14 @@
 #!r6rs
 
-(library (r6rs racket base private for)
+(library (r6rr racket base private for)
   (export :result :length :fill
           :when :unless :do
           :break :final
           for/foldl for*/foldl)
   (import (rnrs base (6))
-          (r6rs racket base private lambda)
-          (r6rs racket base private sequences)
-          (r6rs racket undefined))
+          (r6rr racket base private lambda)
+          (r6rr racket base private sequences)
+          (r6rr racket undefined))
 
   (define :result undefined)
   (define :length undefined)

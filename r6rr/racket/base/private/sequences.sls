@@ -1,6 +1,6 @@
 #!r6rs
 
-(library (r6rs racket base private sequences)
+(library (r6rr racket base private sequences)
   (export :init-pos
           :continue-with-pos?
           :pos->element
@@ -35,12 +35,12 @@
           (rnrs io simple (6))
           (rnrs mutable-pairs (6))
           (rnrs records syntactic (6))
-          (r6rs racket base private contracts)
-          (r6rs racket base private error)
-          (r6rs racket base private exceptions)
-          (r6rs racket base private lambda)
-          (r6rs racket base private math)
-          (r6rs racket undefined))
+          (r6rr racket base private contracts)
+          (r6rr racket base private error)
+          (r6rr racket base private exceptions)
+          (r6rr racket base private lambda)
+          (r6rr racket base private math)
+          (r6rr racket undefined))
 
   (define :init-pos undefined)
   (define :continue-with-pos? undefined)

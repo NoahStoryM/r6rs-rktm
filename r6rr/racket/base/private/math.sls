@@ -1,6 +1,6 @@
 #!r6rs
 
-(library (r6rs racket base private math)
+(library (r6rr racket base private math)
   (export add1
           sub1
           exact-integer?

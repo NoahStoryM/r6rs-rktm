@@ -1,6 +1,6 @@
 #!r6rs
 
-(library (r6rs racket base private contracts)
+(library (r6rr racket base private contracts)
   (export (rename [not false?])
           true?
           and/c
@@ -17,9 +17,9 @@
   (import (rnrs base (6))
           (rnrs control (6))
           (rnrs lists (6))
-          (r6rs racket base private error)
-          (r6rs racket base private lambda)
-          (r6rs racket base private lists))
+          (r6rr racket base private error)
+          (r6rr racket base private lambda)
+          (r6rr racket base private lists))
 
   (define (true? v) (eq? v #t))
 

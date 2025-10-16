@@ -1,13 +1,13 @@
 #!r6rs
 
-(library (r6rs racket base private format)
+(library (r6rr racket base private format)
   (export format-
           format
           ~a ~s)
   (import (rnrs base (6))
           (rnrs io ports (6))
-          (r6rs racket base private lambda)
-          (r6rs racket base private print))
+          (r6rr racket base private lambda)
+          (r6rr racket base private print))
 
   (define (format- form v*)
     (let-values ([(o get) (open-string-output-port)])

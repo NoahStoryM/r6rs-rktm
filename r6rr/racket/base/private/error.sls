@@ -1,6 +1,6 @@
 #!r6rs
 
-(library (r6rs racket base private error)
+(library (r6rr racket base private error)
   (export unquoted-printing-string?
           unquoted-printing-string
           make-unquoted-printing-string
@@ -16,10 +16,10 @@
           (rnrs exceptions (6))
           (rnrs lists (6))
           (rnrs records syntactic (6))
-          (r6rs racket base private exceptions)
-          (r6rs racket base private lambda)
-          (r6rs racket base private format)
-          (r6rs racket base private math))
+          (r6rr racket base private exceptions)
+          (r6rr racket base private lambda)
+          (r6rr racket base private format)
+          (r6rr racket base private math))
 
   (define (string-split str delim)
     (define len (string-length str))
