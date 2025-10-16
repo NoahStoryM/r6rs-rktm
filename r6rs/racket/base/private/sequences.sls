@@ -15,6 +15,7 @@
           sequence?
           sequence-generate
           sequence-generate*
+          in-naturals
           in-values
           in-range
           in-inclusive-range
@@ -344,6 +345,12 @@
                     (values #f raise-sequence-empty-error)))
               (values #f raise-sequence-empty-error))))))
 
+  (define in-naturals
+    (λ ([start 0])
+      (initiate-do-sequence
+       :init-pos start
+       :pos->element values
+       :next-pos add1)))
   (define (in-values . v*)
     (make-do-sequence
      (λ ()

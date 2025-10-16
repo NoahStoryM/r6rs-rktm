@@ -105,6 +105,7 @@
    sequence?
    sequence-generate
    sequence-generate*
+   in-naturals
    in-values
    in-range
    in-inclusive-range
