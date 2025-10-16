@@ -19,14 +19,14 @@
   (define :break undefined)
   (define :final undefined)
 
-  (define-syntax for/foldl-loop
+  (define-syntax for/foldl-iter
     (syntax-rules ()
       [(_ [rest-id init-expr]
           result-expr
           ([(more?1 get1) [id1 seq-expr1]] ...)
           ([id2 seq-expr2] [id3 seq-expr3] ...)
           body-or-break ... body)
-       (for/foldl-loop [rest-id init-expr]
+       (for/foldl-iter [rest-id init-expr]
                        result-expr
                        ([(more?1 get1) [id1 seq-expr1]]
                         ...
@@ -59,7 +59,7 @@
           :result result-expr
           ([id seq-expr] ...)
          body-or-break ... body)
-       (for/foldl-loop [rest-id init-expr]
+       (for/foldl-iter [rest-id init-expr]
                        result-expr
                        ()
                        ([id seq-expr] ...)
