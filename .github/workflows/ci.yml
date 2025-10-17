@@ -14,4 +14,4 @@ jobs:
       - name: Install dependencies
         run: raco pkg install --auto --batch
       - name: Run tests
-        run: raco test -p r6rs-rktp
+        run: raco test -p rnrr-racket

@@ -1,12 +1,12 @@
-#+TITLE: RnRR
+#+TITLE: RnRR-Racket
 #+AUTHOR: Noah Ma
 #+EMAIL: noahstorym@gmail.com
 
 * Table of Contents                                       :TOC_5_gh:noexport:
-- [[#raco-pkg-install-rnrr][raco pkg install rnrr]]
+- [[#raco-pkg-install-rnrr-racket][raco pkg install rnrr-racket]]
 
-* raco pkg install rnrr
+* raco pkg install rnrr-racket
 
 #+begin_src scheme
-(import (rnrr base))
+(import (rnrr racket base))
 #+end_src
